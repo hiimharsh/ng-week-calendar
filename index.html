@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Angular Week Calendar</title>
+
+    <link rel="stylesheet" type="text/css" href="./styles/ui-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="./styles/main.css">
+    <script src="./scripts/angular.min.js"></script>
+    <script src="./scripts/ui-bootstrap.min.js"></script>
+    <script src="./scripts/ui-bootstrap-tpls.min.js"></script>
+    <script src="./scripts/moment.min.js"></script>
+    <script src="./scripts/lodash.js"></script>
+    <script src="./scripts/main.js"></script>
+  </head>
+  <body>
+    <div ng-app="WeelCalendarApp" ng-controller="WeekCalendarController">
+
+        <div class="schedule">
+          <h4>{{ weekStartDate }} - {{ weekEndDate }}</h4>
+          <table class="schedule-table">
+            <thead class="schedule-header">
+              <tr>
+                <th></th>
+                <th ng-repeat="day in weekDays">{{ day }}</th>
+              </tr>
+            </thead>
+            <tbody class="schedule-rows">
+              <tr ng-repeat="time in timeArr" ng-init="timeIndex = $index">
+                <td>{{ time[0] }}</td>
+                <td class="black-box {{ x[0] }}"
+                    ng-repeat="x in time[2]" ng-click="selectBox($event, $index, timeIndex);"
+                    data-start-time="{{ time[1][0] }}" data-end-time="{{ time[1][1] }}" data-day="{{ $index }}"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+    </div>
+  </body>
+</html>
